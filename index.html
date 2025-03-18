@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Python Programs with Output</title>
+    <title>R Programs</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,10 +25,8 @@
     </style>
 </head>
 <body>
-    <h1>Python Programs with Output</h1>
-    
     <div class="program">
-        <h2>VECTOR OPERATIONS</h2>
+        <h2>1. VECTOR OPERATIONS</h2>
         <pre>
 A<-c(1,2,4)
 B<-c(3,5,6)
@@ -48,74 +46,167 @@ print(dot_product)
     </div>
 
         <div class="program">
-        <h2></h2>
+        <h2>2. R LIST</h2>
         <pre>
+my_list<-list (
+  name="Chitty",
+  age=27,
+  grades=c(70,80,95),
+  address=list(City="Pollachi",zip="143567")
+)
+cat("MyList:\n")
+print(my_list)
+cat("\n Accessing elements by index:\n")
+print(my_list[[1]])
+print(my_list[[3]])
+cat("\n Accessing nested list elements:\n")
+print(my_list$address$city)
+print(my_list$address$zip)
+my_list$age<-28
+cat("\n After modifying age:\n")
+print(my_list$age)
+my_list$hobby<-"Dancing"
+cat("\n After adding new element 'hobby':\n")
+print(my_list$hobby)
+        </pre>
+    </div>
+
+        <div class="program">
+        <h2>3. IMPLEMENT MATRICES</h2>
+        <pre>
+matrix_add <- function(A, B) {
+  return(A + B)
+}
+matrix_subtract <- function(A, B) {
+  return(A - B)
+}
+matrix_multiply <- function(A, B) {
+  return(A %*% B)
+}
+A <- matrix(c(3, 4, 5, 6), nrow = 2, ncol = 2)
+B <- matrix(c(7, 8, 9, 5), nrow = 2, ncol = 2)
+cat("Matrix A + B:\n")
+print(matrix_add(A, B))
+cat("Matrix A - B:\n")
+print(matrix_subtract(A, B))
+cat("Matrix A * B:\n")
+print(matrix_multiply(A, B))
+        </pre>
+    </div>
+
+        <div class="program">
+        <h2>4. CREATE A DATAFRAME</h2>
+        <pre>
+name <- c("Chitty", "Tom", "Meow", "Luna")
+age <- c(27, 28, 33, 35)
+city <- c("Pollachi", "Coimbatore", "Theni", "Kerala")
+df <- data.frame(Name = name, Age = age, City = city)
+print("Original DataFrame:")
+print(df)
+older_than_30 <- df[df$Age > 30, ]
+print("People older than 30:")
+print(older_than_30)
+sorted_df <- df[order(df$Age), ]
+print("Sorted DataFrame by Age:")
+print(sorted_df)
+df$Status <- ifelse(df$Age > 30, "Senior", "Junior")
+print("Data Frame With Status Column:")
+print(df)
 
         </pre>
     </div>
 
         <div class="program">
-        <h2></h2>
+        <h2>5. CREATING A FACTOR</h2>
         <pre>
+colors <- c("Black","Blue","Blue","Black","Blue","White")
+color_factor <-factor(colors)
+print("factor object;")
+print(color_factor)
+print("levels-of the factors;")
+print(levels(color_factor))
+print("frequency of each level;")
+print(table (color_factor))  
+        </pre>
+    </div>
+
+        <div class="program">
+        <h2>6. CSV FILE</h2>
+        <pre>
+path <- "D:/rprogram/data.csv"
+x <- read.csv(path)
+print(x)
+path <- "D:/rprogram/DETAIL.CSV"
+y <- read.csv(path)
+print(y)
 
         </pre>
     </div>
 
         <div class="program">
-        <h2></h2>
+        <h2>7. MEAN MEDIAN MODE</h2>
         <pre>
-
+data<-c(11,12,13,14,31,32,33,36,44,45)
+mean_value<-mean(data)
+cat("Mean:",mean_value,"\n")
+median_value<-median(data)
+cat("Median:",median_value,"\n")
+get_mode<-function(x)
+{
+  uniq_x<-unique(x)
+  tab_x<-tabulate (match(x,uniq_x))
+  uniq_x[tab_x==max(tab_x)]
+}
+mode_value<-get_mode(data)
+cat("Mode:",mode_value,"\n")
         </pre>
     </div>
 
         <div class="program">
-        <h2></h2>
+        <h2>8. BARCHART AND PIECHART</h2>
         <pre>
-
+students <-c("Tom","Chitty","Luna")                                      
+marks <-c(95,78,35)
+data <-data.frame(Student=students,Marks=marks)
+par(mfrow=c(1,2))
+barplot(data$Marks,
+        names.arg=data$Student,
+        main="BarChart:Student Marks",
+        col="lightblue",
+        xlab="Students",
+        ylab="Marks",
+        las=2,
+        border="blue")
+pie(data$Marks,
+    labels=paste(data$student,"(",data$Marks,")",sep=""),
+    main="Pie Chart:Marks Distribution",
+    col=rainbow(length(data$Marks)),
+    border="white")
+par(mfrow=c(1,1))
         </pre>
     </div>
 
         <div class="program">
-        <h2></h2>
+        <h2>9. PLOTTING</h2>
         <pre>
-
+x <- seq(-2*pi, 2*pi, length.out = 100)
+y <- sin(x)
+plot(x, y, type = "l", col = "blue", lwd = 2, main = "Sine Wave", xlab = "x values", ylab = "sin(x)")
+grid()
         </pre>
     </div>
 
         <div class="program">
-        <h2></h2>
+        <h2>10. REGRESSION</h2>
         <pre>
-
+x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+y <- c(2, 4, 5, 4, 5, 7, 8, 9, 10, 12)
+data <- data.frame(x, y)
+model <- lm(y~x, data = data)
+summary(model)
+plot(data$x, data$y, main = "Simple Linear Regression", xlab = "x", ylab = "y", pch = 19, col ="blue")
+abline(model, col = "red", lwd = 2)
         </pre>
     </div>
-
-        <div class="program">
-        <h2></h2>
-        <pre>
-
-        </pre>
-    </div>
-
-        <div class="program">
-        <h2></h2>
-        <pre>
-
-        </pre>
-    </div>
-
-        <div class="program">
-        <h2></h2>
-        <pre>
-
-        </pre>
-    </div>
-
-        <div class="program">
-        <h2></h2>
-        <pre>
-
-        </pre>
-    </div>
-
 </body>
 </html>
